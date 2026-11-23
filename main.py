@@ -18,7 +18,9 @@ def main() -> None:
     os.makedirs(out_dir, exist_ok=True)
     text = LINE.strip()
     assert 1 <= len(text) <= 240, f"entry length {len(text)} out of range"
-    assert text.count(".") == 1 and text.endswith("."), "must be one sentence"
+    assert text.endswith("."), "must end with a period"
+    assert ". " not in text and "?" not in text and "!" not in text, \
+        "must be one sentence"
     with open(os.path.join(out_dir, "entry.txt"), "w", encoding="utf-8") as f:
         f.write(text)
 
